@@ -1,0 +1,17 @@
+-- Tambahkan kolom baru ke tabel artikel jika belum ada
+ALTER TABLE artikel ADD COLUMN IF NOT EXISTS url_sumber VARCHAR(255) DEFAULT NULL;
+ALTER TABLE artikel ADD COLUMN IF NOT EXISTS thumbnail VARCHAR(255) DEFAULT NULL;
+ALTER TABLE artikel ADD COLUMN IF NOT EXISTS is_eksternal BOOLEAN DEFAULT FALSE;
+
+-- Jika tabel artikel belum ada, buat baru
+CREATE TABLE IF NOT EXISTS artikel (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    judul VARCHAR(255) NOT NULL,
+    isi LONGTEXT NOT NULL,
+    kategori VARCHAR(100),
+    url_sumber VARCHAR(255) DEFAULT NULL,
+    thumbnail VARCHAR(255) DEFAULT NULL,
+    is_eksternal BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

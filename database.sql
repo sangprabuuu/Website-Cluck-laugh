@@ -1,0 +1,28 @@
+CREATE DATABASE IF NOT EXISTS ayam_ketawa;
+USE ayam_ketawa;
+
+CREATE TABLE IF NOT EXISTS artikel (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    judul VARCHAR(255) NOT NULL,
+    isi TEXT NOT NULL,
+    kategori VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS galeri (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    judul VARCHAR(255) NOT NULL,
+    file VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(50) NOT NULL
+);
+
+INSERT INTO admin (username, password)
+SELECT 'admin', 'admin123'
+WHERE NOT EXISTS (
+    SELECT 1 FROM admin WHERE username = 'admin'
+);
