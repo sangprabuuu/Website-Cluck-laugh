@@ -35,7 +35,7 @@ if (isset($_GET['hapus'])) {
 }
 
 $msg = $_GET['msg'] ?? '';
-$query = mysqli_query($conn, "SELECT * FROM galeri ORDER BY id DESC");
+$query = mysqli_query($conn, "SELECT * FROM galeri ORDER BY id ASC");
 ?>
 <!DOCTYPE html>
 <html lang="id">

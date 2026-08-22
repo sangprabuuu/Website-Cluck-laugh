@@ -16,6 +16,11 @@ $kategori = '';
 $url_sumber = '';
 $thumbnail = '';
 $is_eksternal = false;
+$kategoriOptions = [
+	'perawatan' => 'Perawatan',
+	'lomba' => 'Lomba',
+	'umum' => 'Umum',
+];
 
 if (isset($_GET['edit'])) {
 	$editMode = true;
@@ -136,7 +141,15 @@ if (isset($_POST['submit'])) {
 			<textarea name="isi" rows="8" required><?= htmlspecialchars($isi); ?></textarea>
 
 			<label>Kategori</label>
-			<input type="text" name="kategori" placeholder="Contoh: perawatan" value="<?= htmlspecialchars($kategori); ?>" required>
+			<select name="kategori" required>
+				<option value="" disabled <?= $kategori === '' ? 'selected' : ''; ?>>Pilih kategori</option>
+				<?php if ($kategori !== '' && !array_key_exists($kategori, $kategoriOptions)) { ?>
+					<option value="<?= htmlspecialchars($kategori); ?>" selected><?= htmlspecialchars(ucfirst($kategori)); ?></option>
+				<?php } ?>
+				<?php foreach ($kategoriOptions as $value => $label) { ?>
+					<option value="<?= htmlspecialchars($value); ?>" <?= $kategori === $value ? 'selected' : ''; ?>><?= htmlspecialchars($label); ?></option>
+				<?php } ?>
+			</select>
 
 			<label>URL Sumber (opsional)</label>
 			<input type="url" name="url_sumber" placeholder="https://contoh.com/artikel" value="<?= htmlspecialchars($url_sumber); ?>">
