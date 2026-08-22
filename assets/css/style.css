@@ -212,6 +212,87 @@ body::before {
     margin-top: 8px;
 }
 
+
+.edukasi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    align-items: start;
+}
+
+.edukasi-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-self: start;
+    position: relative;
+}
+
+.edukasi-title {
+    margin: 0;
+    line-height: 1.35;
+}
+
+.edukasi-preview,
+.edukasi-full {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.edukasi-text {
+    margin: 0;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+.edukasi-text--preview {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+}
+
+.edukasi-full {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.edukasi-full .edukasi-text {
+    white-space: pre-wrap;
+}
+
+.edukasi-card.is-expanded .edukasi-preview {
+    display: none;
+}
+
+.edukasi-card.is-expanded .edukasi-full {
+    max-height: 1200px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.edukasi-toggle {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-top: 4px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #2563eb;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+.edukasi-toggle:hover {
+    transform: none;
+    box-shadow: none;
+    color: #1d4ed8;
+}
 h1,
 h2,
 h3 {
@@ -371,6 +452,77 @@ button:hover {
     display: grid;
     gap: 14px;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.edukasi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.edukasi-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.edukasi-title {
+    margin: 0;
+    line-height: 1.35;
+}
+
+.edukasi-preview,
+.edukasi-full {
+    overflow: hidden;
+}
+
+.edukasi-text {
+    margin: 0;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+.edukasi-text--preview {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+}
+
+.edukasi-full {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.edukasi-full .edukasi-text {
+    white-space: pre-wrap;
+}
+
+.edukasi-card.is-expanded .edukasi-preview {
+    display: none;
+}
+
+.edukasi-card.is-expanded .edukasi-full {
+    max-height: 1000px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.edukasi-toggle {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #2563eb;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: none;
+}
+
+.edukasi-toggle:hover {
+    transform: none;
+    box-shadow: none;
+    color: #1d4ed8;
 }
 
 .notice {
