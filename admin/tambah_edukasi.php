@@ -11,7 +11,6 @@ $editMode = false;
 $id = 0;
 $judul = '';
 $isi = '';
-$urutan = 0;
 
 if (isset($_GET['edit'])) {
     $editMode = true;
@@ -25,7 +24,6 @@ if (isset($_GET['edit'])) {
     if ($data) {
         $judul = $data['judul'];
         $isi = $data['isi'];
-        $urutan = $data['urutan'];
     } else {
         header('Location: dashboard_edukasi.php');
         exit;
@@ -35,18 +33,17 @@ if (isset($_GET['edit'])) {
 if (isset($_POST['simpan'])) {
     $judul = trim($_POST['judul'] ?? '');
     $isi = trim($_POST['isi'] ?? '');
-    $urutan = (int)($_POST['urutan'] ?? 0);
 
     if (empty($judul) || empty($isi)) {
         $error = 'Judul dan isi harus diisi.';
     } else {
         if ($editMode) {
-            $stmtUpdate = mysqli_prepare($conn, "UPDATE edukasi SET judul = ?, isi = ?, urutan = ? WHERE id = ?");
-            mysqli_stmt_bind_param($stmtUpdate, "ssii", $judul, $isi, $urutan, $id);
+            $stmtUpdate = mysqli_prepare($conn, "UPDATE edukasi SET judul = ?, isi = ? WHERE id = ?");
+            mysqli_stmt_bind_param($stmtUpdate, "ssi", $judul, $isi, $id);
             mysqli_stmt_execute($stmtUpdate);
         } else {
-            $stmtInsert = mysqli_prepare($conn, "INSERT INTO edukasi (judul, isi, urutan) VALUES (?, ?, ?)");
-            mysqli_stmt_bind_param($stmtInsert, "ssi", $judul, $isi, $urutan);
+            $stmtInsert = mysqli_prepare($conn, "INSERT INTO edukasi (judul, isi, urutan) VALUES (?, ?, 0)");
+            mysqli_stmt_bind_param($stmtInsert, "ss", $judul, $isi);
             mysqli_stmt_execute($stmtInsert);
         }
 
@@ -141,11 +138,6 @@ if (isset($_POST['simpan'])) {
         <div class="form-group">
             <label>Isi/Konten:</label>
             <textarea name="isi" required><?= htmlspecialchars($isi); ?></textarea>
-        </div>
-
-        <div class="form-group">
-            <label>Urutan (untuk sorting):</label>
-            <input type="number" name="urutan" value="<?= $urutan; ?>">
         </div>
 
         <div class="form-actions">

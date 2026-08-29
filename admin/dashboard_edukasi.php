@@ -81,7 +81,6 @@ $query = mysqli_query($conn, "SELECT * FROM edukasi ORDER BY urutan ASC");
                     <tr>
                         <th>ID</th>
                         <th>Judul</th>
-                        <th>Urutan</th>
                         <th>Tanggal</th>
                         <th>Aksi</th>
                     </tr>
@@ -92,7 +91,6 @@ $query = mysqli_query($conn, "SELECT * FROM edukasi ORDER BY urutan ASC");
                         <tr>
                             <td><?= (int)$row['id']; ?></td>
                             <td><?= htmlspecialchars($row['judul']); ?></td>
-                            <td><?= (int)$row['urutan']; ?></td>
                             <td><?= htmlspecialchars($row['created_at']); ?></td>
                             <td class="actions">
                                 <a href="tambah_edukasi.php?edit=<?= (int)$row['id']; ?>">Edit</a>
