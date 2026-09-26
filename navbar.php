@@ -13,7 +13,14 @@ if (strpos($path, '/pages/') !== false || strpos($path, '/admin/') !== false) {
             <span class="logo-text">Cluck Laugh</span>
         </a>
     </div>
-    <div class="navbar-right">
+
+    <button class="navbar-toggle" type="button" aria-expanded="false" aria-controls="navbarMenu" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="navbar-right" id="navbarMenu">
         <div class="navbar-menu">
             <a href="<?= $prefix; ?>index.php">Beranda</a>
             <a href="<?= $prefix; ?>pages/edukasi.php">Edukasi</a>

@@ -7,6 +7,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 2500);
     }
 
+    var navToggle = document.querySelector('.navbar-toggle');
+    var navMenu = document.querySelector('.navbar-right');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+            var isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', String(!isExpanded));
+            navMenu.classList.toggle('is-open', !isExpanded);
+        });
+    }
+
     var toggles = document.querySelectorAll('.edukasi-toggle');
     toggles.forEach(function (toggle) {
         toggle.addEventListener('click', function () {
